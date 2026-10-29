@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>內部工班發包與利潤對帳暗簿 - 象合設計後台</title>
+    <style>
+        :root { --bg: #f4f6f5; --panel: #fff; --primary: #4a524d; --accent: #6b7a72; --border: #e2e5e3; }
+        body { font-family: Arial, sans-serif; background-color: var(--bg); color: var(--primary); margin: 0; padding: 0; }
+        .navbar { background-color: var(--primary); padding: 15px 40px; display: flex; gap: 20px; }
+        .navbar a { color: white; text-decoration: none; font-size: 15px; padding: 8px 16px; border-radius: 4px; transition: background 0.2s; }
+        .navbar a:hover, .navbar a.active { background-color: rgba(255,255,255,0.2); }
+        .container { width: 95%; max-width: 1100px; background: var(--panel); padding: 40px; border-radius: 12px; margin: 40px auto; box-shadow: 0 8px 30px rgba(0,0,0,0.03); }
+        .header { border-bottom: 2px solid var(--accent); padding-bottom: 15px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center; }
+        .header h2 { color: var(--accent); margin: 0; font-size: 22px; }
+        .top-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .card { background: #f8faf9; padding: 20px; border-radius: 8px; border: 1px solid var(--border); text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.01); }
+        .card .title { font-size: 13px; color: #7a857f; margin-bottom: 8px; font-weight: bold; }
+        .card .val { font-size: 22px; font-weight: bold; color: var(--primary); }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th { background-color: #f8faf9; color: var(--accent); text-align: left; padding: 12px 10px; border-bottom: 2px solid var(--border); font-size: 14px; }
+        td { padding: 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+        input, select { padding: 8px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px; color: var(--primary); outline: none; background: #fafbfa; }
+        input:focus, select:focus { border-color: var(--accent); background: #fff; }
+        .btn { padding: 10px 20px; border: none; border-radius: 6px; font-size: 14px; cursor: pointer; background: var(--accent); color: white; font-weight: bold; transition: background 0.2s; }
+        .btn:hover { background: var(--primary); }
+        .btn-del { background: #d98880; padding: 5px 10px; font-size: 12px; }
+        .btn-del:hover { background: #c0392b; }
+        .alert-orange { color: #e67e22 !important; } .alert-green { color: #27ae60 !important; }
+    </style>
+</head>
+<body>
+<div class="navbar">
+    <a href="survey.html">📋 需求訪談</a><a href="index.html">💰 預算報價</a><a href="schedule.html">📅 工程進度</a><a href="change-order.html">🔄 追加減單</a><a href="vendor.html" class="active">🪙 利潤暗簿</a><a href="checkout.html">🔑 驗收交屋</a>
+</div>
+<div class="container">
+    <div class="header">
+        <h2>象合設計內部工班發包與利潤對帳暗簿</h2>
+        <span style="font-size: 12px; color: #d98880; font-weight: bold; background: #fdf2f2; padding: 5px 12px; border-radius: 4px; letter-spacing: 0.5px;">⚠️ 內部機密財務表，請勿出示給業主</span>
+    </div>
+    <div class="top-summary">
+        <div class="card"><div class="title">業主合約總造價 (A)</div><div class="val">$ <input type="number" id="ownerTotal" value="3000000" style="font-size:18px; width:130px; font-weight:bold; text-align:center;" oninput="calc()"></div></div>
+        <div class="card"><div class="title">工班總發包成本 (B)</div><div class="val" style="color:#d98880;">$ <span id="costTotal">0</span></div></div>
+        <div class="card"><div class="title">預估純利潤 (A - B)</div><div class="val" id="profitTotal">$ 0</div></div>
+        <div class="card"><div class="title">已付工班款項總計</div><div class="val" style="color:#2980b9;">$ <span id="paidTotal">0</span></div></div>
+        <div class="card"><div class="title">應付未付工班尾款</div><div class="val" style="color:#e67e22;">$ <span id="unpaidTotal">0</span></div></div>
+    </div>
+    <table id="vendorTable">
+        <thead>
+            <tr>
+                <th style="width: 15%;">發包工班/廠商名稱</th><th style="width: 15%;">負責工種</th>
+                <th style="width: 25%;">發包施作範圍細節備註</th><th style="width: 13%;">工班原始總報價</th>
+                <th style="width: 13%;">已付工班款項</th><th style="width: 14%;">未付工班尾款</th><th style="width: 5%;"></th>
+            </tr>
+        </thead>
+        <tbody id="vendorBody"></tbody>
+    </table>
+    <button class="btn" onclick="addRow()">＋ 新增廠商發包項目</button>
+</div>
+<script>
+    const df = [
+        { v: "旺財泥作工程行", c: "泥作工程", i: "浴室高規防水施作與地磚牆磚鋪設連工帶料", p: 180000, a: 100000 },
+        { v: "德泰水電工程", c: "水電工程", i: "全屋配管、新增迴路佈線與高質感開關面板換新", p: 150000, a: 150000 },
+        { v: "匠心木作工作室", c: "木作工程", i: "全屋平頂耐燃天花板與造型窗簾盒木作結構", p: 250000, a: 100000 }
+    ];
+    function init() { df.forEach(x => addRow(x.v, x.c, x.i, x.p, x.a)); }
+    function addRow(v="", c="木作工程", i="", p=0, a=0) {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td><input type="text" value="${v}" style="width:90%;" placeholder="例如：德泰水電"></td>
+            <td><select style="width:95%;"><option ${c=="保護/拆除"?'selected':''}>保護/拆除</option><option ${c=="泥作工程"?'selected':''}>泥作工程</option><option ${c=="水電工程"?'selected':''}>水電工程</option><option ${c=="木作工程"?'selected':''}>木作工程</option><option ${c=="油漆工程"?'selected':''}>油漆工程</option><option ${c=="系統工程"?'selected':''}>系統工程</option></select></td>
+            <td><input type="text" value="${i}" style="width:92%;" placeholder="輸入發包範圍備註"></td>
+            <td><input type="number" class="p" value="${p}" style="width:85%;" oninput="calc()"></td>
+            <td><input type="number" class="a" value="${a}" style="width:85%;" oninput="calc()"></td>
+            <td class="un" style="font-weight:bold;">0</td>
+            <td><button class="btn btn-del" onclick="del(this)">X</button></td>`;
+        document.getElementById('vendorBody').appendChild(tr); calc();
+    }
+    function del(b) { b.parentNode.parentNode.remove(); calc(); }
+    function calc() {
+        let cost = 0, paid = 0, unpaid = 0;
+        document.querySelectorAll('#vendorBody tr').forEach(r => {
+            const p = Math.max(0, parseFloat(r.querySelector('.p').value) || 0);
+            const a = Math.max(0, parseFloat(r.querySelector('.a').value) || 0);
+            r.querySelector('.p').value = p; r.querySelector('.a').value = a;
+            const un = Math.round(p - a);
+            r.querySelector('.un').innerText = un.toLocaleString();
+            cost += p; paid += a; unpaid += un;
+        });
+        document.getElementById('costTotal').innerText = Math.round(cost).toLocaleString();
+        document.getElementById('paidTotal').innerText = Math.round(paid).toLocaleString();
+        document.getElementById('unpaidTotal').innerText = Math.round(unpaid).toLocaleString();
+        
+        const owner = Math.max(0, parseFloat(document.getElementById('ownerTotal').value) || 0);
+        document.getElementById('ownerTotal').value = owner;
+        
+        const netProfit = Math.round(owner - cost);
+        const profitRate = owner > 0 ? (netProfit / owner) : 0;
+        const profitEl = document.getElementById('profitTotal');
+        
+        // 智能利潤水位燈號判斷
+        profitEl.innerText = "$ " + netProfit.toLocaleString() + " (" + Math.round(profitRate * 100) + "%)";
+        if (profitRate < 0.20) {
+            profitEl.className = "val alert-orange";
+        } else {
+            profitEl.className = "val alert-green";
+        }
+    }
+    window.onload = init;
+</script>
+</body>
+</html>

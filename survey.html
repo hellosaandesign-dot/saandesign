@@ -1,0 +1,54 @@
+<!DOCTYPE html><!-- 檔案：survey.html -->
+<html lang="zh-TW"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>新案客戶服務預約諮詢表 - 象合設計</title>
+<style>
+:root{--primary:#55625b;--accent:#6b7a72;--bg:#f4f6f5;--panel:#fff;--text:#4a524d;--border:#dce3de}*{box-sizing:border-box}body{margin:0;padding:12px;background:var(--bg);color:var(--text);font:16px/1.6 Arial,sans-serif;overflow-wrap:anywhere}.navbar,.container{width:100%;margin:0 auto 20px}.navbar{max-width:1200px;display:grid;grid-template-columns:1fr;gap:8px;padding:12px;background:#e5ebe5;border-radius:16px;box-shadow:0 4px 16px #55625b0d}.navbar a,.btn-submit{min-height:44px;padding:12px;border:1px solid var(--border);border-radius:10px;text-align:center;text-decoration:none;background:#fff;color:var(--primary);cursor:pointer;box-shadow:0 2px 8px #55625b0d;transition:all .25s ease}.navbar a:hover{background:#d9e3da;box-shadow:0 5px 14px #55625b20}.navbar a.active,.btn-submit{background:var(--primary);color:#fff}.container{max-width:800px;padding:20px;border:1px solid var(--border);border-radius:18px;background:var(--panel);box-shadow:0 8px 30px #55625b0d;transition:all .25s ease}.header{border-bottom:2px solid var(--accent);padding-bottom:20px;margin-bottom:24px}.header h2{margin:0;color:var(--primary);font-size:24px}.intro,.notice{font-size:13px;color:#637269}.section-title{margin:24px 0 14px;padding-left:10px;border-left:4px solid var(--accent);font-weight:bold;color:var(--primary)}.form-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:18px}.form-group{display:flex;flex-direction:column;min-width:0}.full{grid-column:1/-1}label{margin-bottom:8px;font-size:14px;font-weight:bold}input,select,textarea{width:100%;min-width:0;max-width:100%;padding:11px;border:1px solid var(--border);border-radius:8px;background:#fafbfa;color:var(--text);font:inherit}textarea{resize:vertical}input:focus,select:focus,textarea:focus{border-color:var(--accent);background:#fff}input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible,button:focus-visible{outline:3px solid #a9bbae;outline-offset:2px}.radio-group,.checkbox-group{display:grid;grid-template-columns:minmax(0,1fr);gap:10px}.radio-item,.checkbox-item{display:flex;align-items:flex-start;gap:8px;font-weight:400;margin:0;padding:8px 0}.radio-item input,.checkbox-item input{width:18px;height:18px;flex:0 0 18px;margin:4px 0 0;accent-color:var(--primary)}.btn-submit{display:block;width:100%;margin-top:24px;font:700 16px/1.5 Arial,sans-serif}.btn-submit:hover{background:#46534c;box-shadow:0 5px 16px #55625b30}.btn-submit:disabled{opacity:.65;cursor:wait}.notice{margin:12px 0 0}#formStatus{color:#8b4828;white-space:pre-line}[hidden]{display:none!important}@media(min-width:768px){body{padding:24px}.navbar{grid-template-columns:repeat(4,minmax(0,1fr))}.container{padding:36px}.form-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(min-width:1100px){.navbar{grid-template-columns:repeat(7,minmax(0,1fr))}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+<div class="navbar" role="navigation" aria-label="系統導覽"><a href="survey.html" class="active" aria-current="page">📋 需求訪談</a><a href="index.html">💰 預算報價</a><a href="schedule.html">📅 工程進度</a><a href="change-order.html">🔄 追加減單</a><a href="vendor.html">🪙 利潤暗簿</a><a href="checkout.html">🔑 驗收交屋</a><a href="report.html">📝 監工日誌</a></div>
+<div class="container"><div class="header"><h2>象合設計 - 服務預約諮詢表</h2><p class="intro">感謝您喜歡象合設計的作品！為了能深入了解您的空間提案，請協助我們填寫以下案件預約資訊。</p></div>
+<form action="https://formsubmit.co/hello.saandesign@gmail.com" accept-charset="UTF-8" method="POST" id="consultForm">
+<input type="hidden" name="_next" value="" disabled><input type="hidden" name="_subject" value="✨ 象合設計：有新業主填寫預約諮詢表了！">
+<div class="section-title">👤 客戶基本聯絡資料</div><div class="form-grid">
+<div class="form-group"><label for="field1">業主姓名 *</label><input id="field1" type="text" name="客戶姓名" placeholder="例如：陳仕哲 先生" required></div>
+<div class="form-group"><label for="field2">聯絡電話 *</label><input id="field2" type="tel" name="聯絡電話" placeholder="0952-XXXXXX" required></div>
+<div class="form-group"><label for="field3">LINE ID / Email *</label><input id="field3" type="text" name="聯絡方式" placeholder="以便我們主動聯繫您" required></div>
+<div class="form-group"><label for="field4">方便聯繫時段</label><select id="field4" name="聯繫時段"><option>皆可</option><option>平日白天 (09:00 - 18:00)</option><option>平日晚上 (18:00 - 21:00)</option><option>例假日或週末</option></select></div>
+</div>
+<div class="section-title">🏠 裝修案件現況資訊</div><div class="form-grid">
+<div class="form-group"><label for="field5">建案/社區名稱 *</label><input id="field5" type="text" name="建案名稱" placeholder="例如：鈺陞御鼎" required></div>
+<div class="form-group"><label for="field6">案件地址 (縣市/區域) *</label><input id="field6" type="text" name="案件地址" placeholder="例如：台中市西區" required></div>
+<div class="form-group"><label for="field7">案件性質 *</label><select id="field7" name="案件性質" required><option>預售屋 (需客變/尚未交屋)</option><option>新成屋 (剛交屋/屋齡5年內)</option><option>中古屋翻新 (10年以上老屋)</option><option>毛胚屋自地自建</option><option>商業空間/辦公室</option></select></div>
+<div class="form-group"><label for="field8">實際施作坪數 (不含陽台)</label><input id="field8" type="number" name="施作坪數" min="0" step="1" inputmode="numeric" placeholder="坪"></div>
+<div class="form-group"><label for="field9">預計交屋/開工時間</label><input id="field9" type="text" name="預計開工" placeholder="例如：2026年底交屋"></div>
+<div class="form-group"><label for="field10">希望入住時間</label><input id="field10" type="text" name="希望入住" placeholder="例如：2027年第二季前"></div>
+</div>
+<div class="section-title">💰 裝修總工程預算範圍 (不含家電、精緻傢俱)</div><div class="form-group full"><div class="radio-group">
+<label class="radio-item"><input type="radio" name="預算範圍" value="150-200">150萬 ~ 200萬</label>
+<label class="radio-item"><input type="radio" name="預算範圍" value="200-300" checked>200萬 ~ 300萬 (本工作室精緻入門門檻)</label>
+<label class="radio-item"><input type="radio" name="預算範圍" value="300-500">300萬 ~ 500萬</label>
+<label class="radio-item"><input type="radio" name="預算範圍" value="500+">500萬以上</label>
+</div></div>
+<div class="section-title">✨ 風格喜好與補充說明</div><div class="form-grid">
+<div class="form-group full"><label>期望的空間風格 (可複選)</label><div class="checkbox-group">
+<label class="checkbox-item"><input type="checkbox" name="風格[]" value="現代簡約">現代簡約</label>
+<label class="checkbox-item"><input type="checkbox" name="風格[]" value="日式寂寂/北歐風">日式侘寂 / 北歐溫潤</label>
+<label class="checkbox-item"><input type="checkbox" name="風格[]" value="現代美式/法式">現代美式 / 法式輕奢</label>
+<label class="checkbox-item"><input type="checkbox" name="風格[]" value="自然木質/老屋新生">自然木質 / 老屋新生</label>
+</div></div>
+<div class="form-group full"><label for="field11">想對象合設計補充的需求備註 (例如成員組成、收納重點)</label><textarea id="field11" name="客戶備註需求" rows="4" placeholder="例如：常下廚需要開放式中島、有貓咪需要規劃貓跳台...等。"></textarea></div>
+<div class="form-group full"><label>您是從哪個管道認識我們的？</label><div class="checkbox-group">
+<label class="checkbox-item"><input type="checkbox" name="獲客管道[]" value="FB">Facebook 粉絲專頁</label>
+<label class="checkbox-item"><input type="checkbox" name="獲客管道[]" value="IG">Instagram 作品集</label>
+<label class="checkbox-item"><input type="checkbox" name="獲客管道[]" value="推薦">親友、舊客戶熱心推薦</label>
+<label class="checkbox-item"><input type="checkbox" name="獲客管道[]" value="搜尋">Google 地圖或網路搜尋</label>
+</div></div></div>
+<p class="notice">送出後將透過 FormSubmit 將諮詢內容寄至象合設計，由我們與您聯繫。</p><p id="formStatus" class="notice" role="status" aria-live="polite"></p><button type="submit" class="btn-submit">送出預約，安排專業設計諮詢</button>
+</form></div>
+<script>
+'use strict';const form=document.getElementById('consultForm'),button=form.querySelector('button[type="submit"]'),status=document.getElementById('formStatus'),area=form.elements.namedItem('施作坪數'),next=form.elements.namedItem('_next'),http=/^https?:$/.test(location.protocol);let busy=false;const originalLabel=button.textContent;
+function normalize(field){const n=Number(field.value),value=Number.isFinite(n)?Math.max(0,Math.round(n)):0;field.value=String(value);return value}
+function resetSubmit(){busy=false;button.disabled=false;button.textContent=originalLabel}
+function configure(){if(http){const url=new URL(location.href);url.search='';url.hash='';next.value=url.href;next.disabled=false}else{next.disabled=true;status.textContent='本機檔案可填寫預覽；寄送請使用網站網址或本機 HTTP 伺服器開啟。'}}
+area.addEventListener('input',()=>normalize(area));area.addEventListener('blur',()=>normalize(area));form.querySelectorAll('input[required]').forEach(field=>field.addEventListener('input',()=>field.setCustomValidity(field.value.trim()?'':'請填寫此欄位，不能只輸入空白。')));
+form.addEventListener('submit',event=>{normalize(area);form.querySelectorAll('input[required]').forEach(field=>{field.value=field.value.trim();field.setCustomValidity(field.value?'':'請填寫此欄位，不能只輸入空白。')});if(!form.reportValidity()){event.preventDefault();return}if(!http){event.preventDefault();status.textContent='尚未送出：請使用 HTTP／HTTPS 網址開啟此表單後再寄送。';return}if(busy){event.preventDefault();return}configure();busy=true;button.disabled=true;button.textContent='正在前往寄送服務…';status.textContent='正在前往 FormSubmit，請依服務頁面完成驗證；尚未確認郵件送達。';setTimeout(resetSubmit,15000)});
+window.addEventListener('pageshow',()=>{resetSubmit();status.textContent='';configure()});configure();
+</script></body></html>
