@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>象合設計 - 雲端專案總控後台</title>
+    <style>
+        :root { --bg: #f4f6f5; --panel: #fff; --primary: #55625b; --accent: #6b7a72; --text: #4a524d; --border: #e2e5e3; }
+        body { font-family: Arial, sans-serif; background-color: var(--bg); color: var(--text); margin: 0; padding: 40px 20px; }
+        .container { width: 95%; max-width: 1100px; background: var(--panel); padding: 40px; border-radius: 12px; margin: 0 auto; box-shadow: 0 8px 30px rgba(0,0,0,0.03); }
+        .header { border-bottom: 2px solid var(--primary); padding-bottom: 20px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: flex-end; }
+        .logo-title { font-size: 28px; font-weight: bold; color: var(--primary); letter-spacing: 1px; }
+        .status-section { margin-bottom: 35px; }
+        .status-title { font-size: 16px; font-weight: bold; color: white; padding: 6px 14px; border-radius: 6px; display: inline-block; margin-bottom: 15px; }
+        .bg-active { background-color: #27ae60; }
+        .bg-negotiate { background-color: #f39c12; }
+        .bg-canceled { background-color: #95a5a6; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 10px; background: #fafbfa; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+        th { background: #f8faf9; color: var(--primary); text-align: left; padding: 12px 15px; border-bottom: 2px solid var(--border); font-size: 14px; }
+        td { padding: 14px 15px; border-bottom: 1px solid var(--border); font-size: 14px; }
+        .btn-link { display: inline-block; padding: 6px 12px; background-color: var(--accent); color: white; text-decoration: none; border-radius: 4px; font-size: 13px; font-weight: bold; transition: background 0.2s; margin-right: 5px; }
+        .btn-link:hover { background-color: var(--primary); }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div>
+            <div class="logo-title">象合設計 Saan Design</div>
+            <div style="font-size: 13px; color: #888; margin-top: 5px;">跨案場雲端數位總控台 — 內部核心工作鏈</div>
+        </div>
+        <div style="text-align: right; font-size: 14px; color: var(--primary); font-weight: bold;">🚀 專案總控中心已連線</div>
+    </div>
+    <!-- 1. 施工進行中 -->
+    <div class="status-section">
+        <div class="status-title bg-active">🟢 現場施工進行中</div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 25%;">專案名稱</th>
+                    <th style="width: 15%;">客戶稱呼</th>
+                    <th style="width: 60%;">合約專案核心工作控制台連結</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="font-weight: bold; color: var(--primary);">美村路黃宅設計案</td>
+                    <td>黃小姐</td>
+                    <td>
+                        <a href="index.html" class="btn-link">💰 預算請款</a>
+                        <a href="schedule.html" class="btn-link">📅 甘特圖</a>
+                        <a href="change-order.html" class="btn-link">🔄 追加減</a>
+                        <a href="vendor.html" class="btn-link">🪙 內部暗簿</a>
+                        <a href="checkout.html" class="btn-link">🔑 驗收交屋</a>
+                        <a href="report.html" class="btn-link">📝 監工日誌</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- 2. 接洽洽談中 -->
+    <div class="status-section">
+        <div class="status-title bg-negotiate">🟡 提案接洽/估價中</div>
+        <table>
+            <thead>
+                <tr>
+                    <th style="width: 25%;">專案名稱</th>
+                    <th style="width: 15%;">客戶稱呼</th>
+                    <th style="width: 60%;">可用對外工作連結</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="font-weight: bold; color: var(--primary);">新專案接洽測試案</td>
+                    <td>新客戶</td>
+                    <td>
+                        <a href="survey.html" target="_blank" class="btn-link" style="background:#4285f4;">📋 點擊開啟：對外客戶需求訪談諮詢表</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
